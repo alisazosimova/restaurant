@@ -1,0 +1,12 @@
+__pycache__
+.serverless
+node_modules
+package-lock.json
+
+restaurant/local_settings.py
+*.sqlite3
+media
+restaurant/local_settings
+.dockerignore
+myvenv/
+venv/
