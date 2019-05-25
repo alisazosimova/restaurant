@@ -1,0 +1,34 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang='ua' prefix="og: http://ogp.me/ns#">
+
+    <head>
+        <title> Ресторан "Плакуча Іва" </title>
+        <link rel="shortcut icon" href="https://s3.amazonaws.com/lessonly-production/companies/favicons/000/003/340/original/favicon_32x32_ir5_icon.ico?1552668010" />
+    </head>
+
+    <body>
+        <header>
+            <h1>Ресторан "Плакуча Іва"</h1>
+        </header>
+        <main>
+            <h3>Меню</h3>
+            <ul>
+                {% for menu_item in menu_items %}
+                    <li>{{ menu_item.name }} - {{ menu_item.price }} грн.</li>
+                    <p>{{ menu_item.description }}</p>
+                        {% for image in menu_items_images %}
+                            <a href="{{ image.image_full.url }}" target="_blank">
+                                <img src="{{ image.image_thumbnail.url }}" alt="{{ image.alt_text }}"/>
+                            </a>
+                        {% endfor %}
+                {% endfor %}
+            </ul>
+
+        </main>
+        <footer>
+            Copyright &copy; 2019 - DataRobot Python Club
+        </footer>
+    </body>
+</html>

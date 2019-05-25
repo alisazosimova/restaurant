@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+    db_drob:
+        build: .
+        command: rm db.sqlite3
+        volumes:
+            - .:/usr/src/app
+    makemigrations:
+        build: .
+        command: python3 manage.py makemigrations
+        volumes:
+            - .:/usr/src/app
+        depends_on:
+          - db_drob
+    migrate:
+        build: .
+        command: python3 manage.py migrate
+        volumes:
+            - .:/usr/src/app
+        depends_on:
+          - makemigrations
+    web:
+        build: .
+        command: python3 manage.py runserver 0.0.0.0:8000
+        volumes:
+          - .:/usr/src/app
+        ports:
+          - "8000:8000"
+        depends_on:
+          - migrate
